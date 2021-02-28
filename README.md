@@ -25,9 +25,8 @@
   If you have any questions regarding about the application, please contact me alexreveles@yahoo.com
 
 
-### Deployed Link: 
 
-### Heroku Deployed Link:
+### Heroku Deployed Link: https://enigmatic-gorge-52520.herokuapp.com/
 
 ### Githublink: https://github.com/alexreveles/note-taker
 

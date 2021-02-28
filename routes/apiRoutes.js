@@ -30,9 +30,9 @@ router.post('/notes', (req, res) => {
 
 
 /////////////////////////// Delete Function for notes  /////////////////////////////
-router.delete('/notes', (req, res) => {
+// router.delete('/notes', (req, res) => {
 
-});
+// });
 /////////////////////////// Exporting files /////////////////////////////
 module.exports = router;
 
