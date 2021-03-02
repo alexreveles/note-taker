@@ -23,16 +23,30 @@ router.post('/notes', (req, res) => {
     const newNote = req.body;
     console.log(newNote);
     db.push(newNote);
-    fs.writeFileSync('./db/db.json', JSON.stringify(db));
+    fs.writeFileSync('./db/db.json', JSON.stringify(db, null, 2));
     res.json(newNote);
 
 });
 
 
 /////////////////////////// Delete Function for notes  /////////////////////////////
-// router.delete('/notes/:id', (req, res) => {
+router.delete('/notes/:id', (req, res) => {
+    const deleteNote = req.params.id;
+    console.log('deleting', deleteNote);
     
-// });
+    let filterNotes = db.filter(note => {
+        console.log(note.id);
+        return note.id !== deleteNote;
+    });
+    console.log(filterNotes);
+    
+    fs.writeFileSync('./db/db.json', JSON.stringify(filterNotes, null, 2));
+    res.status(200).end();
+    
+});
+
 /////////////////////////// Exporting files /////////////////////////////
 module.exports = router;
+
+
 
