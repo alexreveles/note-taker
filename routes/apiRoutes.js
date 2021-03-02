@@ -19,11 +19,12 @@ router.get('/notes', (req, res) => {
 
 /////////////////////////// Routes using POST /////////////////////////////
 router.post('/notes', (req, res) => {
+    let latestNotes = JSON.parse(fs.readFileSync('./db/db.json', 'utf-8'));
     req.body.id = uuid('');
     const newNote = req.body;
     console.log(newNote);
-    db.push(newNote);
-    fs.writeFileSync('./db/db.json', JSON.stringify(db, null, 2));
+    latestNotes.push(newNote);
+    fs.writeFileSync('./db/db.json', JSON.stringify(latestNotes, null, 2));
     res.json(newNote);
 
 });
@@ -33,12 +34,15 @@ router.post('/notes', (req, res) => {
 router.delete('/notes/:id', (req, res) => {
     const deleteNote = req.params.id;
     console.log('deleting', deleteNote);
-    
-    let filterNotes = db.filter(note => {
-        console.log(note.id);
+
+    let latestNotes = JSON.parse(fs.readFileSync('./db/db.json', 'utf-8'));
+    console.log(typeof latestNotes);
+
+    let filterNotes = latestNotes.filter(note => {
+        // console.log(note.id);
         return note.id !== deleteNote;
     });
-    console.log(filterNotes);
+    // console.log(filterNotes);
     
     fs.writeFileSync('./db/db.json', JSON.stringify(filterNotes, null, 2));
     res.status(200).end();
